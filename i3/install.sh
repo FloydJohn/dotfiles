@@ -2,7 +2,6 @@
 
 #Installation script for bootstrap
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-#cd "$(dirname "$0")/.."
 printf "\nWelcome to the i3 linker script!\n"
 
 INST_DIR="$HOME/.i3"
