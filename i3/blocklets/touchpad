@@ -1,11 +1,17 @@
 #!/bin/bash 
 
-toggle() {
+source "$HOME/.i3/i3blocks.colors"
+
+fetch() {
 declare -i ID
 ID=`xinput list | grep -Eo 'TouchPad\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}'`
 declare -i STATE
-STATE=`xinput list-props $ID | grep "Device Enabled"| awk '{print $4}'`
-if [ $STATE -eq 1 ]
+return `xinput list-props $ID | grep "Device Enabled"| awk '{print $4}'`
+}
+
+toggle() {
+fetch
+if [ $? -eq 1 ]
 then
     xinput disable $ID
 else
@@ -13,21 +19,17 @@ else
 fi
 }
 
-declare -i ID
-ID=`xinput list | grep -Eo 'TouchPad\s*id\=[0-9]{1,2}' | grep -Eo '[0-9]{1,2}'`
-declare -i STATE
-STATE=`xinput list-props $ID | grep "Device Enabled"| awk '{print $4}'`
-
-if [ "$STATE" = "1" ];then 
-    Label='<span foreground="#2D882D"> ON</span>'
+fetch
+if [ $? -eq 1 ];then 
+    Label="<span foreground='$color_good'> ON</span>"
 else
-    Label='<span foreground="#AA3939"> OFF</span>'
+    Label="<span foreground='$color_dis'> OFF</span>"
 fi 
 
 echo $Label
 
 case $BLOCK_BUTTON in
-    3) toggle ;;
+    3) toggle | echo "$Label";;
     *) echo "$Label" ;;
 esac
 

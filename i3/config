@@ -1,6 +1,8 @@
 #Set background
 exec_always --no-startup-id feh --bg-fill $HOME/Pictures/wallpaper.jpg
 exec --no-startup-id nm-applet
+#Disable screen blanking
+exec --no-startup-id xset -dpms
 
 #Set base colours
 

@@ -22,11 +22,32 @@ use warnings;
 use utf8;
 use Getopt::Long;
 
+sub source {
+    my $name = shift;
+
+    open my $fh, "<", $name
+        or die "could not open $name: $!";
+
+    while (<$fh>) {
+        chomp;
+        my ($k, $v) = split /=/, $_, 2;
+        $v =~ s/^(['"])(.*)\1/$2/; #' fix highlighter
+        $v =~ s/\$([a-zA-Z]\w*)/$ENV{$1}/g;
+        $v =~ s/`(.*?)`/`$1`/ge; #dangerous
+        $ENV{$k} = $v;
+    }
+}
+
+source $ENV{'HOME'} . "/.i3/i3blocks.colors";
+
+
+
+
 binmode(STDOUT, ":utf8");
 
 # default values
 my $t_warn = 70;
-my $t_crit = 90;
+my $t_crit = 80;
 my $chip = "";
 my $temperature = -9999;
 
@@ -60,12 +81,12 @@ print "$temperature°C\n" x2;
 
 # Print color
 if ($temperature >= $t_crit) {
-    print "#FF0000\n";
+    print "$ENV{'color_err'}";
     exit 33;
 } elsif ($temperature >= $t_warn) {
-    print "#FFFC00\n";
+    print "$ENV{'color_warn'}";
 } else {
-    print "#2D882D\n";
+    print "$ENV{'color_good'}";
 }
 
 exit 0;

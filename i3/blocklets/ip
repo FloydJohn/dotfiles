@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source "$HOME/.i3/i3blocks.colors"
+
+ip=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p')
+
+if [ -z $ip ]; then
+	printf "<span foreground='$color_dis'>down</span>"
+else
+	printf "<span foreground='$color_good'>$ip</span>"
+fi
