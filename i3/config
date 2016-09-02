@@ -29,6 +29,7 @@ new_window none
 smart_borders on
 gaps inner 10
 gaps outer 1
+focus_follows_mouse no
 
 font pango:DejaVu Sans Mono
 
