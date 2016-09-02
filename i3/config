@@ -205,7 +205,7 @@ client.urgent           $base02 $base08    $base00 $base0F
 # finds out, if available)
 bar {
 	i3bar_command i3bar -t
-    	font pango:DejaVu Sans Mono, Font Awesome 8
+    	font pango:DejaVu Sans Mono, Font Awesome 10
 #        strip_workspace_numbers yes
         status_command i3blocks -c /home/alessandro/.i3/i3blocks.conf
         position top
