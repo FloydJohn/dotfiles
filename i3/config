@@ -4,6 +4,8 @@ exec --no-startup-id nm-applet
 #Disable screen blanking
 exec --no-startup-id xset -dpms
 
+exec /opt/Telegram/Telegram
+
 #Set base colours
 
 set $base00 #101218
