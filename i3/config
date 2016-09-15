@@ -3,7 +3,7 @@ exec_always --no-startup-id feh --bg-fill $HOME/Pictures/wallpaper.jpg
 exec --no-startup-id nm-applet
 #Disable screen blanking
 exec --no-startup-id xset -dpms
-
+exec --no-startup-id ranger
 exec /opt/Telegram/Telegram
 
 #Set base colours
@@ -35,13 +35,16 @@ gaps inner 10
 gaps outer 1
 focus_follows_mouse no
 
-font pango:DejaVu Sans Mono
+font pango:DejaVu Sans Mono 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec terminator
+
+#Enter fullscreen
+bindsym $mod+g fullscreen
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -191,6 +194,9 @@ bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# Mail control
+bindsym XF86Mail exec thunderbird
 
 # My own keybindings
 bindsym $mod+f exec firefox
