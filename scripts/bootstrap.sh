@@ -84,8 +84,27 @@ install_scripts() {
   done
 }
 
+install_bin() {
+  printf "Installing bin scripts...\n"
+  
+ if [ $EUID != 0 ]; then
+    sudo "$0" "$@"
+    exit $?
+ fi
+ 
+  for src in $HOME_DIR/bin/*
+  do
+    printf "Linking $src...\n"
+    link_file "$src" "/usr/local/bin/$(basename $src)"
+  done
+}
+
+
+
+
 printf "\nWelcome to the bootstrap installer.\n"
 install_scripts
 install_dotfiles
+install_bin
 printf "All done! Have a nice day!\n"
 
