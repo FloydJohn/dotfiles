@@ -35,7 +35,7 @@ gaps inner 10
 gaps outer 1
 focus_follows_mouse no
 
-font pango:DejaVu Sans Mono 8
+font pango:tewi, Font Awesome 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -49,8 +49,15 @@ bindsym $mod+g fullscreen
 # kill focused window
 bindsym $mod+Shift+q kill
 
+#Start rofi for window switching
+bindsym Mod1+Tab exec rofi -show window
+
+bindsym $mod+d exec rofi -show run
+
+
+
 # start dmenu (a program launcher)
-bindsym $mod+d exec j4-dmenu-desktop
+#bindsym $mod+d exec j4-dmenu-desktop
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -216,10 +223,9 @@ client.urgent           $base02 $base08    $base00 $base0F
 # finds out, if available)
 bar {
 	i3bar_command i3bar -t
-    	font pango:DejaVu Sans Mono, Font Awesome 10
-#        strip_workspace_numbers yes
+    	font pango:tewi , Font Awesome 8
         status_command i3blocks -c /home/alessandro/.i3/i3blocks.conf
-        position top
+        position bottom
         height 25
         colors {
             separator $base03
@@ -231,6 +237,7 @@ bar {
                 urgent_workspace   $base01 $base01    $base08
         }
 }
+
 # System logout
 
 set $mode_system System (l) Lock, (e) Logout, (s) Suspend, (r) Reboot, (Shift+s) Shutdown
