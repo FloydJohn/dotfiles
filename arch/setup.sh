@@ -13,18 +13,24 @@ function nor_print {
 	printf "=> $1 \n"
 }
 
-#Install pacaur
-big_print "Installing pacaur"
-/bin/bash $my_dir/pacaurInstall.sh
+function pacaur_install {
+  /bin/bash $my_dir/pacaurInstall.sh
+}
 
-#Install packages
+function packages_install {
+  while read p; do
+  	if ! [[ $p = \#* || $p = '' ]] ; then
+  		nor_print "Installing $p"
+  		$INSTALL_COMMAND $p
+  		wait
+  	fi
+  done < $my_dir/packages.conf
+}
+
+big_print "Installing pacaur"
+pacaur_install
+
 big_print "Installing packages"
-while read p; do
-	if ! [[ $p = \#* || $p = '' ]] ; then
-		nor_print "Installing $p"
-		$INSTALL_COMMAND $p
-		wait
-	fi	  
-done < $my_dir/packages.conf
+packages_install
 
 big_print "Install finished! Exiting.."
