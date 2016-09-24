@@ -21,8 +21,10 @@ big_print "Installing pacaur"
 big_print "Installing packages"
 while read p; do
 	if ! [[ $p = \#* || $p = '' ]] ; then
-		nor_print "Installing $p"	
+		nor_print "Installing $p"
 		$INSTALL_COMMAND $p
 		wait
 	fi	  
 done < $my_dir/packages.conf
+
+big_print "Install finished! Exiting.."
