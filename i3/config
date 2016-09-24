@@ -97,9 +97,6 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# focus the parent container
-bindsym $mod+a focus parent
-
 # focus the child container
 #bindsym $mod+d focus child
 
@@ -194,6 +191,7 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # My own keybindings
 bindsym $mod+f exec firefox
+bindsym $mod+a exec atom
 
 # Floating
 for_window [class="Lxappearance"] floating enable
