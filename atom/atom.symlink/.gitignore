@@ -1,0 +1,9 @@
+# Ignore everything
+*
+# But not these files...
+!.gitignore
+!config.cson
+!keymap.cson
+!snippets.cson
+!styles.less
+!init.coffee

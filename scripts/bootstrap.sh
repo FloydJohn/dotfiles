@@ -56,7 +56,7 @@ link_file () {
     fi
   fi
 
-  if [ -z "$skip" ] 
+  if [ -z "$skip" ]
   then
     ln -sf "$1" "$2"
     printf "Linked $1 to $2!\n"
@@ -75,36 +75,16 @@ install_dotfiles () {
 
 install_scripts() {
   printf "Installing all scripts...\n"
-  
+
   for src in $(find -H "$HOME_DIR" -maxdepth 2 -name 'install.sh' -not -path '*.git*')
   do
     chmod a+x $src
     printf "Executing $src...\n"
-    /bin/bash $src 
+    /bin/bash $src
   done
 }
-
-install_bin() {
-  printf "Installing bin scripts...\n"
-  
- if [ $EUID != 0 ]; then
-    sudo "$0" "$@"
-    exit $?
- fi
- 
-  for src in $HOME_DIR/bin/*
-  do
-    printf "Linking $src...\n"
-    link_file "$src" "/usr/local/bin/$(basename $src)"
-  done
-}
-
-
-
 
 printf "\nWelcome to the bootstrap installer.\n"
-install_scripts
 install_dotfiles
-install_bin
+install_scripts
 printf "All done! Have a nice day!\n"
-
