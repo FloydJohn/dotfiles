@@ -6,6 +6,8 @@
 #
 # Licensed under the terms of the GNU GPL v3, or any later version.
 
+#WARNING: Install "sysstat" package if not working!
+
 use strict;
 use warnings;
 use utf8;

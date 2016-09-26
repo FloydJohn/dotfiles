@@ -1,8 +1,25 @@
+set nocompatible
+filetype off
+
 set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+let g:pymcd_powerline="py3"
+Plugin 'VundleVim/Vundle.vim'
+
+" NERDTree
+Plugin 'scrooloose/nerdtree'
+let NERDTreeCaseSensitiveSort = 1
+map <F9> :NERDTreeToggle <CR>
+
+call vundle#end()           
+filetype plugin indent on    
 
 " Always show statusline
 set laststatus=2
 
-" Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
+
 set nu
+syntax on
+colorscheme desert

@@ -1,0 +1,19 @@
+"*":
+  core:
+    themes: [
+      "one-light-ui"
+      "solarized-light-syntax"
+    ]
+  editor:
+    fontSize: 12
+    showIndentGuide: true
+  "exception-reporting":
+    userId: "73f7272e-cab5-a008-1392-65e2d7a696dd"
+  fonts: {}
+  "terminal-plus":
+    style:
+      theme: "novel"
+    toggles:
+      runInsertedText: false
+  welcome:
+    showOnStartup: false
