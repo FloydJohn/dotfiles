@@ -79,8 +79,16 @@ install_scripts() {
   for src in $(find -H "$HOME_DIR" -maxdepth 2 -name 'install.sh' -not -path '*.git*')
   do
     chmod a+x $src
-    printf "Executing $src...\n"
-    /bin/bash $src
+    printf "Execute $src? [Y/n]\n> "
+    read -n 1 action
+    printf "\n"
+    case "$action" in
+      n )
+          ;;
+      * )
+          /bin/bash $src;;
+    esac
+
   done
 }
 
