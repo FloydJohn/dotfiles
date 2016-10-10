@@ -4,26 +4,44 @@ exec --no-startup-id nm-applet
 #Disable screen blanking
 exec --no-startup-id xset -dpms
 exec --no-startup-id ranger
-exec /opt/Telegram/Telegram
+exec --no-startup-id /opt/Telegram/Telegram
+exec --no-starup-id compton -b
 
 #Set base colours
 
-set $base00 #101218
-set $base01 #1f222d
-set $base02 #252936
-set $base03 #7780a1
-set $base04 #C0C5CE
-set $base05 #d1d4e0
-set $base06 #C9CCDB
-set $base07 #ffffff
-set $base08 #ee829f
-set $base09 #f99170
-set $base0A #ffefcc
-set $base0B #a5ffe1
-set $base0C #97e0ff
-set $base0D #97bbf7
-set $base0E #c0b7f9
-set $base0F #fcc09e
+set $base00 #553333
+set $base01 #232628
+set $base02 #333638
+set $base03 #cc7711
+set $base04 #cc8855
+set $base05 #775566
+set $base06 #99bbaa
+set $base07 #ccbbaa
+set $base08 #885533
+set $base09 #eeddff
+set $base0A #bbccdd
+set $base0B #ffaa33
+set $base0C #ffbb88
+set $base0D #bb7788
+set $base0E #bbccdd
+set $base0F #ffeedd
+
+#set $base00 #101218
+#set $base01 #1f222d
+#set $base02 #252936
+#set $base03 #7780a1
+#set $base04 #C0C5CE
+#set $base05 #d1d4e0
+#set $base06 #C9CCDB
+#set $base07 #ffffff
+#set $base08 #ee829f
+#set $base09 #f99170
+#set $base0A #ffefcc
+#set $base0B #a5ffe1
+#set $base0C #97e0ff
+#set $base0D #97bbf7
+#set $base0E #c0b7f9
+#set $base0F #fcc09e
 
 # General Config
 set $mod Mod4
@@ -35,7 +53,7 @@ gaps inner 10
 gaps outer 1
 focus_follows_mouse no
 
-font pango:tewi, Font Awesome 10
+font pango:terminus, Font Awesome 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -50,9 +68,9 @@ bindsym $mod+g fullscreen
 bindsym $mod+Shift+q kill
 
 #Start rofi for window switching
-bindsym Mod1+Tab exec rofi -show window
+bindsym Mod1+Tab exec rofi --no-startup-id -show window
 
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi --no-startup-id -show run
 
 
 
@@ -123,6 +141,7 @@ set $ws9 "9 "
 set $ws10 "10 "
 
 #Assign windows to workspaces
+assign [class="Firefox"]	$ws2
 assign [class="Telegram"] 	$ws9
 assign [class="Thunderbird"] 	$ws6
 
@@ -190,9 +209,6 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
-# Touchpad controls
-bindsym XF86TouchpadToggle exec /.local/bin/toggletouchpad.sh # toggle touchpad
-
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
@@ -205,6 +221,7 @@ bindsym XF86Mail exec thunderbird
 # My own keybindings
 bindsym $mod+f exec firefox
 bindsym $mod+a exec atom
+bindsym $mod+t exec --no-startup-id /opt/Telegram/Telegram
 
 # Floating
 for_window [class="Lxappearance"] floating enable
@@ -221,18 +238,18 @@ client.urgent           $base02 $base08    $base00 $base0F
 # finds out, if available)
 bar {
 	i3bar_command i3bar -t
-    	font pango:tewi , Font Awesome 8
+    	font pango:terminus , Font Awesome 8
         status_command i3blocks -c /home/alessandro/.i3/i3blocks.conf
         position bottom
         height 25
         colors {
-            separator $base03
+            separator $base08
                 background $base01
-                statusline $base05
+                statusline $base08
                 focused_workspace  $base01 $base01    $base07
-                active_workspace   $base01 $base02    $base03
-                inactive_workspace $base01 $base01    $base03
-                urgent_workspace   $base01 $base01    $base08
+                active_workspace   $base01 $base02    $base08
+                inactive_workspace $base01 $base01    $base08
+                urgent_workspace   $base01 $base01    $base03
         }
 }
 
