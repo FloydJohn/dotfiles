@@ -3,7 +3,7 @@
 #Bootstrap script: installs any module.
 
 cd "$(dirname "$0")/.."
-HOME_DIR=$(pwd -P)
+SCRIPT_DIR=$(pwd -P)
 
 link_file () {
   local src=$1 dst=$2
@@ -64,19 +64,31 @@ link_file () {
 }
 
 install_dotfiles () {
-  printf "Installing dotfiles to home folder ($HOME_DIR)...\n"
+  printf "Installing dotfiles to home folder ($SCRIPT_DIR)...\n"
 
-  for src in $(find -H "$HOME_DIR" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+  for src in $(find -H "$SCRIPT_DIR" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
   do
     dst="$HOME/.$(basename "${src%.*}")"
     link_file "$src" "$dst"
   done
 }
 
+install_config () {
+  CONFIG_DIR=$HOME/.config
+  printf "Installing dotfiles to config folder ($SCRIPT_DIR)...\n"
+
+  for src in $(find -H "$SCRIPT_DIR" -maxdepth 2 -name '*.config' -not -path '*.git*')
+  do
+    dst="$CONFIG_DIR/$(basename "${src%.*}")"
+    link_file "$src" "$dst"
+  done
+}
+
+
 install_scripts() {
   printf "Installing all scripts...\n"
 
-  for src in $(find -H "$HOME_DIR" -maxdepth 2 -name 'install.sh' -not -path '*.git*')
+  for src in $(find -H "$SCRIPT_DIR" -maxdepth 2 -name 'install.sh' -not -path '*.git*')
   do
     chmod a+x $src
     printf "Execute $src? [Y/n]\n> "
@@ -94,5 +106,6 @@ install_scripts() {
 
 printf "\nWelcome to the bootstrap installer.\n"
 install_dotfiles
+install_config
 install_scripts
 printf "All done! Have a nice day!\n"
