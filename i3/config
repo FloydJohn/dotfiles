@@ -53,7 +53,7 @@ gaps inner 10
 gaps outer 1
 focus_follows_mouse no
 
-font pango:terminus, Font Awesome 8
+font pango:Roboto Mono for Powerline, Font Awesome 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -238,7 +238,7 @@ client.urgent           $base02 $base08    $base00 $base0F
 # finds out, if available)
 bar {
 	i3bar_command i3bar -t
-    	font pango:terminus , Font Awesome 8
+    	font pango:Roboto Mono for Powerline , Font Awesome 8
         status_command i3blocks -c /home/alessandro/.i3/i3blocks.conf
         position bottom
         height 25
