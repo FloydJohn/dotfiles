@@ -16,7 +16,7 @@
     background_darkness = 0.95
     background_image = None
     cursor_color = "#a2adb8"
-    font = Monospace 8
+    font = Roboto Mono for Powerline 8
     foreground_color = "#a2adb8"
     icon_bell = False
     palette = "#553333:#887799:#8899aa:#cc7711:#bc753f:#775566:#99bbaa:#ccbbaa:#7a4927:#e3cbfa:#bbccdd:#ffaa33:#eba16a:#bb7788:#bbccdd:#ffeedd"
