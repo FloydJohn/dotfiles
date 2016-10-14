@@ -257,7 +257,7 @@ bar {
 
 set $mode_system System (l) Lock, (e) Logout, (s) Suspend, (r) Reboot, (Shift+s) Shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id exec lock, mode "default"
+    bindsym l exec --no-startup-id exec lock -t '', mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
     bindsym s exec --no-startup-id exec ~/.i3/lock-suspend.sh, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
