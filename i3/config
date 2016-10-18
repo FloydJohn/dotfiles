@@ -70,8 +70,7 @@ bindsym $mod+Shift+q kill
 #Start rofi for window switching
 bindsym Mod1+Tab exec rofi --no-startup-id -show window
 
-bindsym $mod+d exec rofi --no-startup-id -show run
-
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
 
 
 # start dmenu (a program launcher)
