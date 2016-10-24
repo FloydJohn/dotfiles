@@ -52,6 +52,7 @@ smart_borders on
 gaps inner 10
 gaps outer 1
 focus_follows_mouse no
+for_window [instance="sun-awt-X11-XFramePeer"] floating enable
 
 font pango:Roboto Mono for Powerline, Font Awesome 8
 
@@ -71,14 +72,6 @@ bindsym $mod+Shift+q kill
 bindsym Mod1+Tab exec rofi --no-startup-id -show window
 
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
-
-
-# start dmenu (a program launcher)
-#bindsym $mod+d exec j4-dmenu-desktop
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -123,9 +116,6 @@ bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
-
-# focus the child container
-#bindsym $mod+d focus child
 
 # Workspace variables
 set $ws1 "1 "
