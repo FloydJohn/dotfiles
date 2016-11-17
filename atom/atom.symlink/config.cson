@@ -1,8 +1,11 @@
 "*":
+  "atom-terminal":
+    MacWinRunDirectly: true
+    app: "terminator"
   core:
     themes: [
-      "one-light-ui"
-      "solarized-light-syntax"
+      "one-dark-ui"
+      "atom-dark-syntax"
     ]
   editor:
     fontSize: 12
