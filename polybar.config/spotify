@@ -1,0 +1,5 @@
+TITLE=$(BLOCK_INSTANCE=spotify ~/.i3/blocklets/mediaplayer)
+if [[ $TITLE != *"null"*"null"* ]]
+then
+  echo $TITLE | xargs echo 
+fi

@@ -1,0 +1,242 @@
+;=====================================================
+;
+;   To learn more about how to configure Lemonbuddy
+;   go to https://github.com/jaagr/lemonbuddy
+;
+;   The README contains alot of information
+;
+;=====================================================
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+margin-left = 5
+margin-right = 5
+
+
+[bar/bar1]
+monitor = LVDS1
+dock = false
+width = 100%
+height = 22
+offset-x = 0
+offset-y = 0
+
+background = #ff222222
+foreground = #dfdfdf
+linecolor = #555
+
+border-bottom = 0
+border-bottom-color = #333
+
+spacing = 0
+lineheight = 3
+padding-left = 0
+padding-right = 0
+module-margin-left = 2
+module-margin-right = 0
+
+locale = it_IT.UTF-8
+
+font-0 = NotoSans-Regular:size=8
+font-1 = FontAwesome:size=8
+
+modules-left = i3
+modules-center = spotify 
+modules-right = arch volume memory cpu temperature wlan eth battery date powermenu 
+
+tray-position = right
+tray-padding = 4
+;tray-transparent = true
+tray-background = #222222
+;wm-restack = bspwm
+
+[module/i3]
+type = internal/i3
+format = <label-state>
+index-sort = true
+
+;label-focused = %icon% %index%
+label-focused-background = #ee333333
+label-focused-underline= #cc333333
+label-focused-padding = 1
+
+;label-unfocused = %index%
+label-unfocused-padding = 1
+
+;label-urgent = %index%!
+label-urgent-background = #bd2c40
+label-urgent-padding = 1
+
+;label-visible = %index%
+label-visible-foreground = #55
+label-visible-padding = 1
+
+[module/backlight]
+type = internal/xbacklight
+
+format = <label> <bar>
+format-underline = #9f93af
+label =  
+
+bar-width = 5
+bar-indicator = │
+bar-indicator-foreground = #ff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = #55
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+
+format = <label>
+label =  %percentage%
+format-underline = #BA5624
+
+[module/memory]
+type = internal/memory
+interval = 2
+
+format = <label>
+label =  %percentage_used%
+format-underline = #FFA552
+
+[module/wlan]
+type = internal/network
+interface = wlo1
+interval = 3.0
+
+format-connected =   <label-connected>
+format-connected-underline = #35AC76
+format-disconnected =   x 
+format-disconnected-foreground = #55
+format-disconnected-underline = ${self.format-connected-underline}
+
+label-connected = %local_ip%
+
+[module/eth]
+type = internal/network
+interface = enp3s0
+interval = 3.0
+
+
+format-connected = <label-connected>
+format-connected-underline = #35AC76
+format-disconnected =   x
+format-disconnected-underline = ${self.format-connected-underline}
+
+label-connected =  %local_ip%
+format-disconnected-foreground = #55
+
+
+[module/date]
+type = internal/date
+format = <date>
+date =  %H:%M
+date-alt =  %d-%m-%Y
+interval = 5
+format-underline = #328999
+
+
+[module/volume]
+type = internal/volume
+master-mixer = Master
+headphone-id = 9
+
+format-volume = <label-volume>
+format-volume-underline = #0c7a9b
+format-muted-underline  = #0c7a9b
+
+label-volume =  %percentage%
+label-volume-foreground = ${BAR.foreground}
+
+label-muted =  x
+label-muted-foreground = #55
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ACAD
+full-at = 98
+
+format-charging = <animation-charging>  <label-charging>
+format-charging-underline = #f8a14d
+format-discharging = <ramp-capacity>  <label-discharging>
+format-discharging-underline = ${self.format-charging-underline}
+format-full =   <label-full>
+format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 70
+
+format =   <label>
+format-underline = #f8534D
+format-warn = <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = #e60053
+
+[module/powermenu]
+type = custom/menu
+
+label-open = 
+label-open-foreground = #e60053
+label-close =  cancel
+label-close-foreground = #e60053
+label-separator = |
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = shutdown -r
+
+menu-2-0 = power off
+menu-2-0-exec = shutdown now
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[module/spotify]
+type=custom/script
+
+exec = ~/.config/lemonbuddy/spotify 
+interval = 2
+format =   <output>
+format-underline = #55bb55
+
+[module/arch]
+type=custom/script
+
+exec = ~/.i3/blocklets/arch | xargs echo
+interval = 300
+format-underline = #777777
+
+format =   <output>
+
+
+; vim:ft=dosini
