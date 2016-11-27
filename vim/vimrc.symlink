@@ -1,18 +1,8 @@
 set nocompatible
 filetype off
 
-set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+set rtp+=/usr/lib/python3.5/site-packages/powerline/bindings/vim/
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-let g:pymcd_powerline="py3"
-Plugin 'VundleVim/Vundle.vim'
-
-" NERDTree
-Plugin 'scrooloose/nerdtree'
-let NERDTreeCaseSensitiveSort = 1
-map <F9> :NERDTreeToggle <CR>
-
-call vundle#end()           
 filetype plugin indent on    
 set tabstop=4
 set shiftwidth=4

@@ -1,5 +1,5 @@
 #Lemonbar
-exec_always --no-startup-id $HOME/.config/lemonbuddy/launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #Set background
 exec_always --no-startup-id feh --bg-fill $HOME/Pictures/wallpaper.jpg
 exec --no-startup-id nm-applet
@@ -8,6 +8,7 @@ exec --no-startup-id xset -dpms
 exec --no-startup-id ranger
 exec --no-startup-id /opt/Telegram/Telegram
 exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g = "i3bar"' --config ~/.config/compton.conf -b
+exec setxkbmap it
 
 #Set base colours
 

@@ -15,7 +15,7 @@ margin-right = 5
 
 
 [bar/bar1]
-monitor = LVDS1
+;monitor = LVDS1
 dock = false
 width = 100%
 height = 22
@@ -160,7 +160,7 @@ label-muted-foreground = #55
 
 [module/battery]
 type = internal/battery
-battery = BAT0
+battery = BAT1
 adapter = ACAD
 full-at = 98
 
@@ -224,7 +224,7 @@ menu-2-1-exec = menu-open-0
 [module/spotify]
 type=custom/script
 
-exec = ~/.config/lemonbuddy/spotify 
+exec = ~/.config/polybar/spotify 
 interval = 2
 format =   <output>
 format-underline = #55bb55

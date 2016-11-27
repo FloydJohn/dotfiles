@@ -14,7 +14,7 @@ function nor_print {
 }
 
 function pacaur_install {
-  /bin/bash $my_dir/pacaurInstall.sh
+  /bin/bash $my_dir/install-pacaur.sh
 }
 
 function packages_install {
