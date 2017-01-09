@@ -1,4 +1,4 @@
-TITLE=$(BLOCK_INSTANCE=spotify ~/.i3/blocklets/mediaplayer)
+TITLE=$(BLOCK_INSTANCE=spotify ~/.config/polybar/mediaplayer)
 if [[ $TITLE != *"null"*"null"* ]]
 then
   echo $TITLE | xargs echo 

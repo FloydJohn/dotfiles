@@ -1,18 +1,38 @@
-set nocompatible
-filetype off
+execute pathogen#infect()
 
+set nocompatible
 set rtp+=/usr/lib/python3.5/site-packages/powerline/bindings/vim/
-set rtp+=~/.vim/bundle/Vundle.vim
 filetype plugin indent on    
-set tabstop=4
-set shiftwidth=4
-set expandtab
+set tabstop=4       "Number of visual spaces per tab
+set softtabstop=4   "Number of spaces when editing
+set expandtab       "Put 4 spaces in every tab
+filetype indent on  "filetype detection, indentation
+set cursorline      "Light line over cursor
+
+set wildmenu        "Graphical switch when choosing options
+set lazyredraw      "Don't redraw in the middle of macros!
+set showmatch       "Show mathing parenthesis
+
+"Map leader
+let mapleader = " "
+
+"Search
+set incsearch       "Search while entering chars
+set hlsearch        "Highlight matches
+
+"turn off search highlights
+nnoremap <leader><space> :nohlsearch<CR>
+
+
+"Folding
+set foldenable
+set foldlevelstart=10       "Folds open on default
+set foldnestmax=10          "Max folds
+set foldmethod=indent   " fold based on indent level
 
 " Always show statusline
 set laststatus=2
 
-set t_Co=256
-
 set nu
 syntax on
-colorscheme desert
+colors wombat256mod

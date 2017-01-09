@@ -8,7 +8,7 @@ exec --no-startup-id xset -dpms
 exec --no-startup-id ranger
 exec --no-startup-id /opt/Telegram/Telegram
 exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g = "i3bar"' --config ~/.config/compton.conf -b
-exec setxkbmap it
+exec --no-startup-id setxkbmap it
 
 #Set base colours
 
@@ -29,23 +29,6 @@ set $base0D #bb7788
 set $base0E #bbccdd
 set $base0F #ffeedd
 
-#set $base00 #101218
-#set $base01 #1f222d
-#set $base02 #252936
-#set $base03 #7780a1
-#set $base04 #C0C5CE
-#set $base05 #d1d4e0
-#set $base06 #C9CCDB
-#set $base07 #ffffff
-#set $base08 #ee829f
-#set $base09 #f99170
-#set $base0A #ffefcc
-#set $base0B #a5ffe1
-#set $base0C #97e0ff
-#set $base0D #97bbf7
-#set $base0E #c0b7f9
-#set $base0F #fcc09e
-
 # General Config
 set $mod Mod4
 
@@ -55,7 +38,7 @@ smart_borders on
 gaps inner 20
 gaps outer 0
 focus_follows_mouse no
-for_window [instance="sun-awt-X11-XFramePeer"] floating enable
+for_window [instance="MyGdxGame"] floating enable
 
 font pango:Roboto Mono for Powerline, Font Awesome 8
 
@@ -75,6 +58,13 @@ bindsym $mod+Shift+q kill
 bindsym Mod1+Tab exec rofi --no-startup-id -show window
 
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu='rofi -dmenu'
+
+
+#switch focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -115,22 +105,23 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # Workspace variables
-set $ws1 "1 "
-set $ws2 "2 "
-set $ws3 "3 "
-set $ws4 "4 "
-set $ws5 "5 "
-set $ws6 "6 "
-set $ws7 "7 "
-set $ws8 "8 "
-set $ws9 "9 "
-set $ws10 "10 "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 #Assign windows to workspaces
-assign [class="Firefox"]	$ws2
-assign [class="Telegram"] 	$ws9
-assign [class="Thunderbird"] 	$ws6
-assign [class="Spotify"] 	$ws7
+assign [class="Firefox"]	 $ws2
+assign [class="Transmission"] $ws8
+assign [class="Telegram"] 	 $ws9
+assign [class="Thunderbird"] $ws10
+assign [class="Spotify"] 	 $ws7
 
 
 # switch to workspace
@@ -193,8 +184,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 5%- && p
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+10 i3blocks # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp   exec --no-startup-id light -Ap 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id light -Up 10 # decrease screen brightness
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -204,9 +195,6 @@ bindsym XF86AudioPrev exec playerctl previous
 
 # Mail control
 bindsym XF86Mail exec thunderbird
-
-#Lock control
-bindsym $mod+l exec lock -t ''
 
 # My own keybindings
 bindsym $mod+f exec firefox
@@ -258,3 +246,5 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 bindsym $mod+Delete mode "$mode_system"
+
+# vim:filetype=i3
