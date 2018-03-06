@@ -1,38 +1,92 @@
-execute pathogen#infect()
-
+" Main Configuration {{{
 set nocompatible
-set rtp+=/usr/lib/python3.5/site-packages/powerline/bindings/vim/
+filetype off
 filetype plugin indent on    
-set tabstop=4       "Number of visual spaces per tab
-set softtabstop=4   "Number of spaces when editing
-set expandtab       "Put 4 spaces in every tab
+set encoding=utf8
 filetype indent on  "filetype detection, indentation
-set cursorline      "Light line over cursor
-
-set wildmenu        "Graphical switch when choosing options
 set lazyredraw      "Don't redraw in the middle of macros!
 set showmatch       "Show mathing parenthesis
+set modelines=1
+" }}}
 
-"Map leader
-let mapleader = " "
+" Vundle Plugins {{{
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-airline/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'sjl/gundo.vim'
+Plugin 'kien/ctrlp.vim'
+call vundle#end()
+" }}}
 
-"Search
-set incsearch       "Search while entering chars
-set hlsearch        "Highlight matches
-
-"turn off search highlights
-nnoremap <leader><space> :nohlsearch<CR>
-
-
-"Folding
-set foldenable
-set foldlevelstart=10       "Folds open on default
-set foldnestmax=10          "Max folds
-set foldmethod=indent   " fold based on indent level
-
-" Always show statusline
-set laststatus=2
-
+" Appeareance {{{
 set nu
 syntax on
-colors wombat256mod
+colorscheme gruvbox
+set cursorline      "Light line over cursor
+set wildmenu        "Graphical switch when choosing options
+let g:airline_powerline_fonts = 1
+" }}}
+
+" Tabs {{{
+set tabstop=2       "Number of visual spaces per tab
+set softtabstop=2   "Number of spaces when editing
+set expandtab       "Put 4 spaces in every tab
+" }}}
+
+" Keymappings {{{
+let mapleader = ","
+map <C-\> :NERDTreeToggle<CR>
+nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <leader>u :GundoToggle<CR>
+" }}}
+
+"Search {{{
+set incsearch       "Search while entering chars
+set hlsearch        "Highlight matches
+" }}}
+
+" Folding {{{
+set foldenable
+set foldlevelstart=10    " Folds open on default
+set foldnestmax=10       " Max folds
+set foldmethod=indent    " fold based on indent level
+" }}}
+
+" NERDTree Configuration {{{
+" Start when vim opened without params
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Start when vim opened on folder
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" Close when last window is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" }}}
+
+" CtrlP Configuration {{{
+let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_working_path_mode = 0
+" }}}
+
+" Syntastic Configuration {{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+" }}}
+
+" vim:foldmethod=marker:foldlevel=0
