@@ -7,15 +7,18 @@ filetype indent on  "filetype detection, indentation
 set lazyredraw      "Don't redraw in the middle of macros!
 set showmatch       "Show mathing parenthesis
 set modelines=1
+set re=1
 " }}}
 
 " Vundle Plugins {{{
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'PotatoesMaster/i3-vim-syntax'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'flazz/vim-colorschemes'
@@ -23,6 +26,9 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'sjl/gundo.vim'
 Plugin 'kien/ctrlp.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'maxmellon/vim-jsx-pretty'
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 " }}}
 
@@ -38,7 +44,9 @@ let g:airline_powerline_fonts = 1
 " Tabs {{{
 set tabstop=2       "Number of visual spaces per tab
 set softtabstop=2   "Number of spaces when editing
-set expandtab       "Put 4 spaces in every tab
+set expandtab       "Put 2 spaces in every tab
+set smartindent
+set shiftwidth=2
 " }}}
 
 " Keymappings {{{
@@ -57,7 +65,7 @@ set hlsearch        "Highlight matches
 set foldenable
 set foldlevelstart=10    " Folds open on default
 set foldnestmax=10       " Max folds
-set foldmethod=indent    " fold based on indent level
+set foldmethod=syntax
 " }}}
 
 " NERDTree Configuration {{{
@@ -74,7 +82,15 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " CtrlP Configuration {{{
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 0
+" Search also on super folders until project root
+let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\.git$\|\.yardoc\|node_modules\|log\|tmp$',
+      \ 'file': '\.so$\|\.dat$|\.DS_Store$'
+      \ }
 " }}}
 
 " Syntastic Configuration {{{
@@ -89,4 +105,20 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_javascript_eslint_exe = 'npm run lint --'
 " }}}
 
+" JS Syntax Configuration {{{
+let g:javascript_conceal_function             = "ƒ"
+let g:javascript_conceal_null                 = "ø"
+let g:javascript_conceal_this                 = "@"
+let g:javascript_conceal_return               = "⇚"
+let g:javascript_conceal_undefined            = "¿"
+let g:javascript_conceal_NaN                  = "ℕ"
+let g:javascript_conceal_prototype            = "¶"
+let g:javascript_conceal_static               = "•"
+let g:javascript_conceal_super                = "Ω"
+let g:javascript_conceal_arrow_function       = "⇒"
+let g:javascript_conceal_noarg_arrow_function = "🞅"
+let g:javascript_conceal_underscore_arrow_function = "🞅"
+set conceallevel=1
+  " }}}
+" 
 " vim:foldmethod=marker:foldlevel=0
